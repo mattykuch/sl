@@ -1,0 +1,14 @@
+{% extends "sls/base.html" %}
+
+{% block content %}
+
+  <p> <a href="{% url 'sls:vaccine' vaccine.id %}"> {{ vaccine }}</a></p>
+
+  <p>Add a new stock entry:</p>
+  <form action="{% url 'sls:new_entry' vaccine.id %}" method='post'>
+  	{% csrf_token %}
+  	{{ form.as_p }}
+  	<button name='submit'>add stock entry</button>
+  </form>
+
+{% endblock content %}

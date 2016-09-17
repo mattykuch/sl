@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from .models import Vaccine
-from .forms import VaccineForm
+from .forms import VaccineForm, EntryForm
 
 def index(request):
 	"""The homepage for stocklog(sl)"""
@@ -36,3 +36,23 @@ def new_vaccine(request):
 
 	context = {'form': form}
 	return render(request, 'sls/new_vaccine.html', context)
+
+def new_entry(request, vaccine_id):
+	""" Add a new entry for a particular vaccine."""
+	vaccine = Vaccine.objects.get(id=vaccine_id)
+
+	if request.method != 'POST':
+		# No data submitted; create a blank form.
+		form = EntryForm()
+
+	else:
+		# POST data submitted; process data.
+		form = EntryForm(data=request.POST)
+		if form.is_valid():
+			new_entry = form.save(commit=False)
+			new_entry.vaccine = vaccine
+			new_entry.save()
+			return HttpResponseRedirect(reverse('sls:vaccine', args=[vaccine_id]))
+
+	context = {'vaccine': vaccine, 'form': form}
+	return render(request, 'sls/new_entry.html', context)

@@ -5,6 +5,9 @@
   <p> Vaccine or Device: {{ vaccine }}</p>
 
   <p>Entries:</p>
+  <p>
+  	<a href="{% url 'sls:new_entry' vaccine.id %}">add new stock entry</a>
+  </p>
   <ul>
   	{% for entry in entries %}
   	  <li>
