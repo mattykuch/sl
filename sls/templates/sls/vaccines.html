@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <p>Vaccines</p>
+  <p>Vaccines or Devices</p>
 
   <ul>
   	{% for vaccine in vaccines %}
@@ -14,6 +14,8 @@
   	  <li>No vaccines have been added to the log yet.</li>
   	{% endfor %}
   </ul>
+
+  <a href="{% url 'sls:new_vaccine' %}"> Add data for another vaccine:</a>
 
 {% endblock content %}
 

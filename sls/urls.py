@@ -13,4 +13,7 @@ urlpatterns = [
 
 	# Detail page for a single vaccine
 	url(r'^vaccines/(?P<vaccine_id>\d+)/$', views.vaccine, name='vaccine'),
+
+	# Page for adding a new vaccine
+	url(r'^new_vaccine/$', views.new_vaccine, name='new_vaccine'),
 ]
