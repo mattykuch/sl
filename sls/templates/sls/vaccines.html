@@ -6,7 +6,9 @@
 
   <ul>
   	{% for vaccine in vaccines %}
-  	  <li>{{ vaccine }}</li>
+  	  <li>
+  	  	<a href="{% url 'sls:vaccine' vaccine.id %}"> {{ vaccine }}</a>
+  	  </li>
   	{% empty %}
   	  <li>No vaccines have been added to the log yet.</li>
   	{% endfor %}
