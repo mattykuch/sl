@@ -21,8 +21,8 @@ class EntryForm(forms.ModelForm):
 				  'stock_adjustment_dvs':'Stock Adjustment (DVS) ',
 				  'stock_adjustment_nms':'Stock Adjustment (NMS) ',	
 					}
-		widgets = {'stock_balance': forms.TextInput(),
-				  'stock_order': forms.TextInput(),
-				  'stock_adjustment_dvs':forms.TextInput(),
-				  'stock_adjustment_nms':forms.TextInput(),	
+		widgets = {'stock_balance': forms.NumberInput(),
+				  'stock_order': forms.NumberInput(),
+				  'stock_adjustment_dvs':forms.NumberInput(),
+				  'stock_adjustment_nms':forms.NumberInput(),	
 					}
