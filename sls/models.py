@@ -51,3 +51,18 @@ class Vaccine(models.Model):
 	def __unicode__(self):
 		"""Return a string representation of the model."""
 		return self.vaccine_select
+class Entry(models.Model):
+	""" Entries of stock data for specific Vaccine or Device"""
+	vaccine = models.ForeignKey(Vaccine)
+	stock_balance = models.IntegerField()
+	stock_order = models.IntegerField()
+	stock_adjustment_dvs = models.IntegerField()
+	stock_adjustment_nms = models.IntegerField(default =0)
+
+
+	class Meta:
+		verbose_name_plural = 'entries'
+
+	def __unicode__(self):
+		"""Return a string representation of the model."""
+		return "{0}, {1}, {2}, {3}".format(self.stock_balance, self.stock_order, self.stock_adjustment_dvs, self.stock_adjustment_nms)

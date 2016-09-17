@@ -1,0 +1,16 @@
+{% extends 'sls/base.html' %}
+
+{% block content %}
+
+  <p>Vaccines</p>
+
+  <ul>
+  	{% for vaccine in vaccines %}
+  	  <li>{{ vaccine }}</li>
+  	{% empty %}
+  	  <li>No vaccines have been added to the log yet.</li>
+  	{% endfor %}
+  </ul>
+
+{% endblock content %}
+

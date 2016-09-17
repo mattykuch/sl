@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from sls.models import Vaccine, Entry
+
+admin.site.register(Vaccine)
+admin.site.register(Entry)
