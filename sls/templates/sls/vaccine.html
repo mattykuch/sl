@@ -15,6 +15,9 @@
   	  	<p>Stock Order: {{ entry.stock_order }}</p>
   	  	<p>Stock Adjustment, DVS: {{ entry.stock_adjustment_dvs }}</p>
   	  	<p>Stock Adjustment, NMS: {{ entry.stock_adjustment_nms }}</p>
+  	  	<p>
+  	  		<a href="{% url 'sls:edit_entry' entry.id %}">edit entry</a>
+  	  	</p>
   	  </li>
   	{% empty %}
   	  <li>

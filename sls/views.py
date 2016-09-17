@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from .models import Vaccine
+from .models import Vaccine, Entry
 from .forms import VaccineForm, EntryForm
 
 def index(request):
@@ -56,3 +56,20 @@ def new_entry(request, vaccine_id):
 
 	context = {'vaccine': vaccine, 'form': form}
 	return render(request, 'sls/new_entry.html', context)
+
+def edit_entry(request, entry_id):
+	"""Edit an existing entry."""
+	entry = Entry.objects.get(id=entry_id)
+	vaccine = entry.vaccine
+
+	if request.method != 'POST':
+		# Initial request; pre-fill form with the current entry
+		form = EntryForm(instance=entry)
+	else:
+		# POST data submitted;process data.
+		form = EntryForm(instance=entry, data=request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('sls:vaccine', args=[vaccine.id]))
+	context = {'entry': entry, 'vaccine': vaccine, 'form': form}
+	return render(request, 'sls/edit_entry.html', context)
