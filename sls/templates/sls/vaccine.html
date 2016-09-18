@@ -1,8 +1,12 @@
 {% extends 'sls/base.html' %}
 
+{% block header %}
+  <h2>{{ vaccine }}</h2>
+
+{% endblock header %}
+
 {% block content %}
 
-  <p> Vaccine or Device: {{ vaccine }}</p>
 
   <p>Entries:</p>
   <p>
@@ -10,15 +14,19 @@
   </p>
   <ul>
   	{% for entry in entries %}
-  	  <li>
-  	  	<p>Stock Balance: {{ entry.stock_balance }}</p>
-  	  	<p>Stock Order: {{ entry.stock_order }}</p>
-  	  	<p>Stock Adjustment, DVS: {{ entry.stock_adjustment_dvs }}</p>
-  	  	<p>Stock Adjustment, NMS: {{ entry.stock_adjustment_nms }}</p>
-  	  	<p>
-  	  		<a href="{% url 'sls:edit_entry' entry.id %}">edit entry</a>
-  	  	</p>
-  	  </li>
+  	  <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+      	  	<p>Stock Balance: {{ entry.stock_balance }}</p>
+      	  	<p>Stock Order: {{ entry.stock_order }}</p>
+      	  	<p>Stock Adjustment, DVS: {{ entry.stock_adjustment_dvs }}</p>
+      	  	<p>Stock Adjustment, NMS: {{ entry.stock_adjustment_nms }}</p>
+  	  	    <small>
+  	  		    <a href="{% url 'sls:edit_entry' entry.id %}">edit entry</a>
+  	  	    </small>
+          </h3>  
+  	    </div>
+      </div> <!-- panel -->  
   	{% empty %}
   	  <li>
   	  	There are no entries for this vaccine yet.

@@ -1,21 +1,30 @@
 {% extends 'sls/base.html' %}
 
+{% block header %}
+  <h1>Vaccines or Devices</h1>
+{% endblock header %}
+
 {% block content %}
 
-  <p>Vaccines or Devices</p>
 
   <ul>
   	{% for vaccine in vaccines %}
-  	  <li>
-  	  	<p>{{ vaccine.date_added|date:'M d, Y H:i'}}</p>
-  	  	<p><a href="{% url 'sls:vaccine' vaccine.id %}"> {{ vaccine }}</a></p>
-  	  </li>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+  	  
+          <h3>
+    	  	  <small>{{ vaccine.date_added|date:'M d, Y H:i'}}</small>
+            <p><a href="{% url 'sls:vaccine' vaccine.id %}"> {{ vaccine }}</a></p>
+          </h3>
+        </div>
+      </div>          
+  	 
   	{% empty %}
   	  <li>No vaccines have been added to the log yet.</li>
   	{% endfor %}
   </ul>
 
-  <a href="{% url 'sls:new_vaccine' %}"> Add another vaccine or device:</a>
+  <h3><a href="{% url 'sls:new_vaccine' %}"> Add another vaccine or device:</a></h3>
 
 {% endblock content %}
 

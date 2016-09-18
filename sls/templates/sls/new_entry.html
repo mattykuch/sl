@@ -1,14 +1,22 @@
 {% extends "sls/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2> Add new stock entry:</h2>
+
+{% endblock header %}
 
 {% block content %}
 
   <p> <a href="{% url 'sls:vaccine' vaccine.id %}"> {{ vaccine }}</a></p>
 
-  <p>Add a new stock entry:</p>
-  <form action="{% url 'sls:new_entry' vaccine.id %}" method='post'>
+  <form action="{% url 'sls:new_entry' vaccine.id %}" method='post' class="form">
   	{% csrf_token %}
-  	{{ form.as_p }}
-  	<button name='submit'>add stock entry</button>
+  	{% bootstrap_form form %}
+
+  	{% buttons %}
+  	<button name='submit' class="btn btn-primary">add stock entry</button>
+  	{% endbuttons %}
   </form>
 
 {% endblock content %}

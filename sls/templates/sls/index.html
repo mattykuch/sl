@@ -1,5 +1,20 @@
 {% extends "sls/base.html" %}
 
+{% block header %}
+  <div class='jumbotron'>
+  <h1> Log your stock to NMS.</h1>
+  </div>
+{% endblock header %}  
+
 {% block content %}
-<p> A tool for National Medical Stores (NMS) in Uganda to store and track stock data from the District Vaccine Stores (DVS). </p>
+
+  <h2>
+  	<p><h3>StockLog is a tool for National Medical Stores (NMS) in Uganda to upload and track stock data from the District Vaccine Stores (DVS).</h3></p> 
+  </h2>
+
+  <h3>
+  	A web-based and mobile-friendly app.
+  	<a href="{% url 'users:register' %}"> Register an account</a>
+  </h3>
+
 {% endblock content %}
