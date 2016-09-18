@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User 
 
 class Vaccine(models.Model):
 	"""A Vaccine or Device the user is inputing stock data for"""
@@ -46,6 +47,7 @@ class Vaccine(models.Model):
 									choices =VACCINE_CHOICES,
 									default =MEASLES)
 	date_added = models.DateTimeField(auto_now_add=True)
+	owner = models.ForeignKey(User)
 	
 
 	def __unicode__(self):
